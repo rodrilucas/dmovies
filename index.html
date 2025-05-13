@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Busca de Filmes</title>
+    <link rel="stylesheet" href="src/style.css" />
+  </head>
+  <body class="bg-gray-900">
+    <div
+      id="movie-modal"
+      class="fixed flex text-white inset-0 z-50 bg-[#1e2939b7] items-center justify-center p-4 opacity-0 pointer-events-none"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modal-title"
+    >
+      <div
+        class="bg-gray-900 rounded-lg overflow-hidden shadow-2xl max-w-3xl w-full relative transform scale-95"
+      >
+        <button
+          id="close-modal"
+          class="absolute top-2 right-2 text-gray-400 hover:text-white hover:scale-110 cursor-pointer"
+          aria-label="Fechar modal"
+          type="button"
+        >
+          ✖
+        </button>
+        <div id="modal-content" class="flex flex-col md:flex-row"></div>
+      </div>
+    </div>
+    <header
+      class="w-full flex gap-4 justify-between items-center border border-gray-800 px-8 py-4 mb-8"
+    >
+      <h1
+        class="text-white font-bold text-xl inline-flex items-center justify-center gap-2 before:content-[''] before:w-[22px] before:h-[22px] before:bg-[url(/heart.svg)]"
+      >
+        D'Movies
+      </h1>
+      <div class="hidden md:flex justify-center items-center text-white">
+        <form id="searchForm" class="flex flex-row gap-4 w-full max-w-2xl">
+          <div class="relative flex-1">
+            <span
+              class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <circle cx="11" cy="11" r="6" />
+                <line x1="16" y1="16" x2="21" y2="21" />
+              </svg>
+            </span>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Digite o nome do filme..."
+              class="w-full pl-10 pr-4 py-2 rounded bg-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500"
+            />
+          </div>
+          <button id="btn-search" type="submit" class="btn-base">
+            <span class="btn-search-text">Buscar</span>
+            <span
+              class="btn-search-spinner hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
+            ></span>
+          </button>
+        </form>
+      </div>
+    </header>
+    <main class="flex flex-col lg:flex-row gap-12 p-4">
+      <section
+        class="w-full h-max lg:max-w-md flex-shrink-0 border border-gray-800"
+      >
+        <form
+          id="movieFilterForm"
+          class="mx-auto bg-gray-900 text-white p-6 rounded shadow space-y-6"
+        >
+          <div class="text-white relative">
+            <label for="keyword" class="block text-sm font-medium"
+              >Palavras-chave</label
+            >
+            <input
+              type="text"
+              id="keyword"
+              name="keyword"
+              placeholder="Filtrar por palavra chave"
+              class="input-base"
+            />
+            <div
+              id="spinner"
+              class="hidden absolute right-2 top-[34px] h-5 w-5 border-2 border-white border-t-transparent rounded-full animate-spin"
+            ></div>
+            <ul
+              id="suggestions"
+              class="w-full border border-blue-500 bg-gray-800 mt-1 rounded-md hidden absolute z-10"
+            ></ul>
+          </div>
+
+          <ul
+            id="with-genres"
+            class="flex flex-wrap gap-x-2 gap-y-2 text-sm"
+          ></ul>
+
+          <div>
+            <label for="sortSelect" class="block text-sm font-medium"
+              >Ordenar por</label
+            >
+            <select name="sort" id="sortSelect" class="input-base"></select>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="col-span-2 md:col-span-1">
+              <label
+                for="startYear"
+                class="block text-sm font-medium text-white"
+                >Ano inicial</label
+              >
+              <div class="relative">
+                <input
+                  type="date"
+                  id="startYear"
+                  name="startYear"
+                  min="1880-01-01"
+                  class="input-base"
+                />
+                <svg
+                  class="svg-date"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="col-span-2 md:col-span-1">
+              <label for="endYear" class="block text-sm font-medium text-white"
+                >Ano final</label
+              >
+              <div class="relative">
+                <input
+                  type="date"
+                  id="endYear"
+                  name="endYear"
+                  min="1890-01-01"
+                  class="input-base"
+                />
+                <svg
+                  class="svg-date"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                  />
+                </svg>
+              </div>
+            </div>
+            <div class="col-span-2">
+              <label for="language" class="block text-sm font-medium"
+                >Idioma</label
+              >
+              <select id="language" name="language" class="input-base"></select>
+            </div>
+          </div>
+          <div>
+            <label for="rating" class="block text-sm font-medium"
+              >Pontuação do usuário: <span id="ratingValue">0</span></label
+            >
+            <input
+              class="mt-2 w-full"
+              type="range"
+              id="rating"
+              name="rating"
+              min="0"
+              max="10"
+              step="0.5"
+              value="0"
+            />
+          </div>
+          <div>
+            <label for="avaliation" class="block text-sm font-medium"
+              >Votos mínimos do usuário:
+              <span id="avaliationValue">0</span></label
+            >
+            <input
+              class="mt-2 w-full"
+              type="range"
+              id="avaliation"
+              name="avaliation"
+              min="0"
+              max="5000"
+              step="50"
+              value="0"
+            />
+          </div>
+          <div class="flex items-center justify-between">
+            <label for="adult" class="inline-flex items-center text-sm">
+              <input
+                class="form-checkbox text-blue-600 h-4 w-4"
+                id="adult"
+                type="checkbox"
+                name="adult"
+              />
+              <span class="ml-2">Incluir conteúdo adulto</span>
+            </label>
+            <button id="btn-filter" type="submit" class="btn-base">
+              <span class="btn-filter-text">Buscar</span>
+              <span
+                class="btn-filter-spinner hidden w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"
+              ></span>
+            </button>
+          </div>
+        </form>
+      </section>
+      <section
+        class="flex-1 min-h-screen text-white border border-gray-800 p-8"
+      >
+        <div
+          id="movies"
+          class="grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-6 mb-8 place-content-between min-h-screen"
+        ></div>
+        <div id="sentinel"></div>
+        <div
+          id="pagination"
+          class="flex flex-wrap items-center justify-center gap-2"
+        ></div>
+      </section>
+    </main>
+    <script type="module" src="src/main.js"></script>
+  </body>
+</html>
