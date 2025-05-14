@@ -1,7 +1,8 @@
 import { sortOptions, genres, languages } from "../utils/data";
-import { sortSelect, genreList, language } from "../elements/elements";
+import { sortSelect, genreList, language, movieFilterForm } from "../elements/elements";
 import { createEl } from "../selectors/selectors";
 import { onGenreButtonClick } from "./filterHandlers";
+import { tmdb } from "../components/tmdb";
 
 export function genreBtnsAddClass(btn) {
   btn.classList.add(
@@ -83,3 +84,5 @@ languages.forEach((lang) => {
   option.textContent = lang.name;
   language.appendChild(option);
 });
+
+movieFilterForm.appendChild(tmdb())
