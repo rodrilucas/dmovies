@@ -65,7 +65,7 @@ function createPaginationButtons(totalPages, onChangePage) {
 
 function createPaginationContainer(totalPages, totalResults) {
   const container = createEl("div");
-  container.className = "flex flex-col items-center w-full gap-4 px-4 py-4 mt-2";
+  container.className = "flex flex-col items-center w-full gap-4 px-4 py-4 mt-4";
   container.setAttribute("role", "navigation");
   container.setAttribute("aria-label", "Paginação");
 
@@ -104,5 +104,4 @@ export function pagination(totalPages, totalResults) {
   const fragment = document.createDocumentFragment();
   fragment.appendChild(createPaginationContainer(totalPages, totalResults));
   contentWrapper.appendChild(fragment);
-  contentWrapper.appendChild(tmdb());
 }

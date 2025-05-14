@@ -32,5 +32,4 @@ export function moviesList(movies) {
   });
 
   moviesContainer.appendChild(moviesFragment);
-  moviesContainer.appendChild(tmdb());
 }
