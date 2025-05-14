@@ -5,9 +5,13 @@
 }
 
 .svg-date {
-    @apply w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 text-white pointer-events-none;
+  @apply w-5 h-5 absolute right-3 top-1/2 transform -translate-y-1/2 text-white pointer-events-none;
 }
 
-.btn-base{
-    @apply px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 text-white flex items-center gap-2 cursor-pointer;
+.btn-base {
+  @apply px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 text-white flex items-center gap-2 cursor-pointer;
+}
+
+.heart-icon {
+  @apply inline-flex items-center justify-center before:content-[''] before:w-[22px] before:h-[22px] before:bg-[url(/heart.svg)];
 }
