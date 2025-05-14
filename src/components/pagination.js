@@ -65,7 +65,7 @@ function createPaginationButtons(totalPages, onChangePage) {
 
 function createPaginationContainer(totalPages, totalResults) {
   const container = createEl("div");
-  container.className = "flex flex-col items-center w-full gap-4 px-4 py-4";
+  container.className = "flex flex-col items-center w-full gap-4 px-4 py-4 mt-2";
   container.setAttribute("role", "navigation");
   container.setAttribute("aria-label", "Paginação");
 
