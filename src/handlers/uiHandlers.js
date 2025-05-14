@@ -11,6 +11,7 @@ import { createEl } from "../selectors/selectors";
 import { onGenreButtonClick } from "./filterHandlers";
 import { debounceMoviesSuggestion } from "../api/debounceMoviesSuggestion";
 import { tmdb } from "../components/tmdb";
+import { suggestion } from "../components/suggestion";
 
 export function genreBtnsAddClass(btn) {
   btn.classList.add(
@@ -61,17 +62,12 @@ function handleClickOutside(e) {
 
 export function renderSuggestions(movies, onSelect) {
   if (movies.length === 0) {
-    suggestions.innerHTML = `<li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">Sem sugestões de palavras-chave</li>`;
+    suggestions.innerHTML = suggestion("Não há sugestões de palavras-chave.");
     suggestions.classList.remove("hidden");
     document.addEventListener("click", handleClickOutside);
     return;
   }
-  suggestions.innerHTML = movies
-    .map(
-      (m) =>
-        `<li class="px-4 py-2 hover:bg-gray-700 cursor-pointer">${m.title}</li>`
-    )
-    .join("");
+  suggestions.innerHTML = movies.map((m) => suggestion(m.title)).join("");
   suggestions.classList.remove("hidden");
 
   suggestions.querySelectorAll("li").forEach((li) => {
@@ -110,7 +106,6 @@ keyword.addEventListener("focus", () => {
     });
   });
 });
-
 
 sortOptions.forEach(([value, label]) => {
   const option = createEl("option");
