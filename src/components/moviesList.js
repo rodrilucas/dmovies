@@ -5,6 +5,7 @@ import { skeletons } from "../components/skeleton";
 import { filterState } from "../states/filterState";
 import { searchState } from "../states/searchState";
 import { moviesContainer } from "../elements/elements";
+import { tmdb } from "./tmdb";
 
 export function showSkeletons() {
   if (filterState.isFilter || searchState.isSearch) moviesContainer.innerHTML = "";
@@ -31,4 +32,5 @@ export function moviesList(movies) {
   });
 
   moviesContainer.appendChild(moviesFragment);
+  moviesContainer.appendChild(tmdb());
 }
