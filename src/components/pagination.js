@@ -4,6 +4,7 @@ import { searchState } from "../states/searchState";
 import { getVisiblePages } from "../utils/getVisiblePage";
 import { paginationContainer } from "../elements/elements";
 import { pageState } from "../states/pageState";
+import { tmdb } from "./tmdb";
 
 function createHelpText(totalResults) {
   const start = (pageState.currentPage - 1) * pageState.pageSize + 1 || 0;
@@ -103,4 +104,5 @@ export function pagination(totalPages, totalResults) {
   const fragment = document.createDocumentFragment();
   fragment.appendChild(createPaginationContainer(totalPages, totalResults));
   contentWrapper.appendChild(fragment);
+  contentWrapper.appendChild(tmdb());
 }
