@@ -1,6 +1,7 @@
-import { openModal } from "../actions/openModal";
+import { eventBus } from "../core/eventBus";
 import { createEl } from "../selectors/selectors";
 import { formatDate } from "../utils/dates";
+import { events } from "../constants/events";
 
 function createPoster(movie) {
   if (movie.poster_path) {
@@ -38,13 +39,14 @@ function createCardContent(movie, score) {
 
 export function movie(m, score) {
   const card = createEl("div");
+  card.id = "movie";
   card.className =
     "relative bg-gray-800 rounded-lg overflow-hidden shadow-lg hover:shadow-2xl transition duration-300 flex flex-col cursor-pointer";
 
   card.innerHTML = createCardContent(m, score);
 
   card.addEventListener("click", () => {
-    openModal(m);
+    eventBus.emit(events.openModal, m);
   });
 
   return card;
