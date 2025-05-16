@@ -1,7 +1,7 @@
 import { delay } from "../utils/delay";
 import { debounceMoviesSuggestionState } from "../states/debounceMoviesSuggestionState";
 
-async function debounceMoviesSuggestion(query, limit, fetchDelay) {
+export async function fetchMoviesSuggestion(query, limit, fetchDelay) {
   try {
     const response = await Promise.all([
       fetch(
@@ -34,4 +34,3 @@ async function debounceMoviesSuggestion(query, limit, fetchDelay) {
   }
 }
 
-export { debounceMoviesSuggestion };
