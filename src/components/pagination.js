@@ -1,10 +1,9 @@
 import { $, createEl } from "../selectors/selectors";
 import { searchMovies } from "../api/searchMovies";
 import { searchState } from "../states/searchState";
-import { getVisiblePages } from "../utils/getVisiblePage";
 import { paginationContainer } from "../elements/elements";
 import { pageState } from "../states/pageState";
-import { tmdb } from "./tmdb";
+import { visiblePages as getVisiblePages } from "../ui/visiblePages";
 
 function createHelpText(totalResults) {
   const start = (pageState.currentPage - 1) * pageState.pageSize + 1 || 0;

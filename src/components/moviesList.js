@@ -1,11 +1,10 @@
 import { $, $$ } from "../selectors/selectors";
 import { movie } from "./movie";
-import { animateCircle } from "../utils/animateCircle";
 import { skeletons } from "../components/skeleton";
+import { moviesContainer } from "../elements/elements";
 import { filterState } from "../states/filterState";
 import { searchState } from "../states/searchState";
-import { moviesContainer } from "../elements/elements";
-import { tmdb } from "./tmdb";
+import { animateCircle } from "../ui/animateCircle";
 
 export function showSkeletons() {
   if (filterState.isFilter || searchState.isSearch) moviesContainer.innerHTML = "";
