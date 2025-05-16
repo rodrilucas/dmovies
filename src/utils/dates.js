@@ -9,3 +9,7 @@ export function formatDateUTC(dateString) {
 export function getDateNow() {
   return new Date().toISOString().split("T")[0];
 }
+
+export function parseDate(date) {
+  return date ? formatDate(date) : "";
+}
