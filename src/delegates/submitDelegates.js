@@ -2,7 +2,7 @@ import { eventBus } from "../core/eventBus";
 import { events } from "../constants/events";
 import { onSubmit } from "../constants/submitDelegates";
 
-export const submitDelegate = new Map([
+export const submitDelegates = new Map([
   [
     onSubmit.movieFilter,
     (event) => {
