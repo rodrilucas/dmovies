@@ -12,6 +12,6 @@
   @apply px-4 py-2 bg-blue-600 rounded hover:bg-blue-700 text-white flex items-center gap-2 cursor-pointer;
 }
 
-.heart-icon {
-  @apply inline-flex items-center justify-center before:content-[''] before:w-[22px] before:h-[22px] before:bg-[url(/heart.svg)];
+.movie-icon {
+  @apply inline-flex items-center justify-center before:content-[''] before:w-[24px] before:h-[24px] before:bg-[url(/movie.svg)];
 }
