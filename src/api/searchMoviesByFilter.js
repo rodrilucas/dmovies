@@ -1,17 +1,15 @@
 import { fetchMoviesByFilters } from "./fetchMoviesByFilter.js";
-import { searchState } from "../states/searchState.js";
-import { searchMoviesByFilterState } from "../states/searchMoviesByFilterState.js";
+import { loadingError, loading, loadingSuccess } from "../emitters/emitters.js";
 import {
-  loadingError,
-  loadingState,
-  loadingSuccess,
-} from "../emitters/emitLoading.js";
-import { fetchState } from "../states/fetchState.js";
+  search as searchState,
+  loading as loadingState,
+  filter as filterState,
+} from "../handlers/setupEventHandlers.js";
 
 export async function searchMoviesByFilter(filters) {
-  if (searchState.isSearch || fetchState.isLoading) return;
+  if (searchState.isSearch || loadingState.isLoading) return;
 
-  loadingState({
+  loading({
     isLoading: true,
     context: "filter",
   });
@@ -24,14 +22,13 @@ export async function searchMoviesByFilter(filters) {
       isPagination: false,
     });
 
-    fetchState.hasMore = data.movies.length == searchMoviesByFilterState.LIMIT;
+    loadingState.isHasMore = data.movies.length == filterState.pageLimit;
   } catch (error) {
     loadingError({
       error: error || "Ocorreu um erro ao fazer o filtro de filmes.",
     });
-    
   } finally {
-    loadingState({
+    loading({
       isLoading: false,
       context: "filter",
     });

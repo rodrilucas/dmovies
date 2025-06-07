@@ -2,12 +2,15 @@ import { $, $$ } from "../selectors/selectors";
 import { movie } from "./movie";
 import { skeletons } from "../components/skeleton";
 import { moviesContainer } from "../elements/elements";
-import { filterState } from "../states/filterState";
-import { searchState } from "../states/searchState";
 import { animateCircle } from "../ui/animateCircle";
+import {
+  search as searchState,
+  filter as filterState,
+} from "../handlers/setupEventHandlers";
 
 export function showSkeletons() {
-  if (filterState.isFilter || searchState.isSearch) moviesContainer.innerHTML = "";
+  if (filterState.isFilter || searchState.isSearch)
+    moviesContainer.innerHTML = "";
 
   const skeletonsContainer = skeletons();
   skeletonsContainer.forEach((s) => moviesContainer.appendChild(s));

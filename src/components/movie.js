@@ -1,7 +1,7 @@
 import { eventBus } from "../core/eventBus";
 import { createEl } from "../selectors/selectors";
 import { formatDate } from "../utils/dates";
-import { events } from "../constants/events";
+import { events } from "../constants/allEvents";
 
 function createPoster(movie) {
   if (movie.poster_path) {
