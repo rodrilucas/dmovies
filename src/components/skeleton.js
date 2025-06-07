@@ -1,7 +1,7 @@
 import { createEl } from "../selectors/selectors";
 
 function skeletonImage() {
-  return `<div class="flex items-center justify-center lg:h-60 xl:h-96 mb-4 bg-gray-300 rounded-sm dark:bg-gray-700"></div>`;
+  return `<div class="flex items-center justify-center h-[23rem] lg:h-[18rem] xl:h-[29rem] mb-4 bg-gray-300 rounded-sm dark:bg-gray-700"></div>`;
 }
 
 function skeletonRating() {
