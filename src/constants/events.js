@@ -1,21 +1,21 @@
-import { searchEvents } from "./searchEvents";
-import { filterEvents } from "./filterEvents";
-import { genreEvents } from "./genreEvents";
-import { keywordEvents } from "./keywordEvents";
-import { modalEvents } from "./modalEvents";
-import { paginationEvents } from "./paginationEvents";
-import { cacheEvents } from "./cacheEvents";
-import { validationEvents } from "./validationEvents";
-import { uiEvents } from "./uiEvents";
+export const click = {
+  closeModal: "#close-modal",
+  movieModal: "#movie-modal",
+  genreBtn: "#genre-btn",
+};
 
-export const events = {
-  ...searchEvents,
-  ...filterEvents,
-  ...genreEvents,
-  ...keywordEvents,
-  ...modalEvents,
-  ...paginationEvents,
-  ...cacheEvents,
-  ...validationEvents,
-  ...uiEvents,
+export const focus = {
+  keyword: "#keyword",
+};
+
+export const input = {
+  keyword: "#keyword",
+  rating: "#rating",
+  avaliation: "#avaliation",
+  inputSearch: "#input-search",
+};
+
+export const submit = {
+  movieFilter: "#movie-filter",
+  searchForm: "#search-form",
 };
