@@ -1,18 +1,18 @@
 import { eventBus } from "../core/eventBus";
-import { events } from "../constants/events";
-import { onSubmit } from "../constants/submitDelegates";
+import { events } from "../constants/allEvents";
+import { submit } from "../constants/events";
 
 const { emit } = eventBus;
 
 export const submitDelegates = new Map([
   [
-    onSubmit.movieFilter,
+    submit.movieFilter,
     (event) => {
       emit(events.filterForm, { source: "form", event });
     },
   ],
   [
-    onSubmit.searchForm,
+    submit.searchForm,
     (event) => {
       emit(events.searchForm, { source: "form", event });
     },

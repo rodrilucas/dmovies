@@ -1,30 +1,30 @@
 import { eventBus } from "../core/eventBus";
-import { events } from "../constants/events";
-import { onInput } from "../constants/inputDelegates";
+import { events } from "../constants/allEvents";
+import { input } from "../constants/events";
 
 const { emit } = eventBus;
 
 export const inputDelegates = new Map([
   [
-    onInput.keyword,
+    input.keyword,
     (event) => {
       emit(events.keywordInput, { source: "input", event });
     },
   ],
   [
-    onInput.rating,
+    input.rating,
     (event) => {
       emit(events.setRating, { source: "input", event });
     },
   ],
   [
-    onInput.avaliation,
+    input.avaliation,
     () => {
       emit(events.setAvaliation, { source: "input" });
     },
   ],
   [
-    onInput.inputSearch,
+    input.inputSearch,
     (event) => {
       emit(events.setCurrentQuery, { source: "input", event });
     },

@@ -1,12 +1,12 @@
-import { events } from "../constants/events";
-import { onFocusIn } from "../constants/focusInDelegates";
+import { events } from "../constants/allEvents";
 import { eventBus } from "../core/eventBus";
+import { focus } from "../constants/events";
 
 const { emit } = eventBus;
 
 export const focusInDelegates = new Map([
   [
-    onFocusIn.keyword,
+    focus.keyword,
     (event) => {
       emit(events.keywordFocus, { source: "input", event });
     },

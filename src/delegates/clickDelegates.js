@@ -1,14 +1,14 @@
-import { events } from "../constants/events";
+import { events } from "../constants/allEvents";
 import { eventBus } from "../core/eventBus";
-import { onClick } from "../constants/clickDelegates";
+import { click } from "../constants/events";
 
 const { emit } = eventBus;
 
 export const clickDelegates = new Map([
-  [onClick.closeModal, () => emit(events.closeModal, { source: "button" })],
-  [onClick.movieModal, () => emit(events.closeModal, { source: "backdrop" })],
+  [click.closeModal, () => emit(events.closeModal, { source: "button" })],
+  [click.movieModal, () => emit(events.closeModal, { source: "backdrop" })],
   [
-    onClick.genreBtn,
+    click.genreBtn,
     (event) => {
       event.preventDefault();
       emit(events.genreBtnsToggleClass, { source: "button", event });
