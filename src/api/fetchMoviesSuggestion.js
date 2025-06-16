@@ -5,7 +5,7 @@ export async function fetchMoviesSuggestion(query, limit, fetchDelay) {
   try {
     const response = await Promise.all([
       fetch(
-        `http://localhost:3000/api/v1/movies/suggestions?keyword=${encodeURIComponent(
+        `https://dmoviesapi.onrender.com/api/v1/movies/suggestions?keyword=${encodeURIComponent(
           query
         )}&limit=${limit}`,
         {

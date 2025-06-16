@@ -1,6 +1,6 @@
 import { delay } from "../utils/delay";
 
-const BASE_URL = "http://localhost:3000/api/v1/movies";
+const BASE_URL = "https://dmoviesapi.onrender.com/api/v1/movies";
 
 export async function fetchMovies(query, page, limit, sort) {
   const isSearch = Boolean(query);

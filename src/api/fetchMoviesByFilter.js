@@ -1,7 +1,7 @@
 import { delay } from "../utils/delay";
 
 export async function fetchMoviesByFilters(filters) {
-  const BASE_URL = "http://localhost:3000/api/v1/movies";
+  const BASE_URL = "https://dmoviesapi.onrender.com/api/v1/movies";
   const options = {
     method: "POST",
     headers: {
